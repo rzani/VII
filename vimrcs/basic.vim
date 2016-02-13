@@ -123,7 +123,8 @@ set background=dark
 
 " Try to select colorscheme
 try
-    colorscheme dracula
+    let g:sierra_Pitch = 1
+    colorscheme sierra
 catch
 endtry
 
@@ -131,19 +132,19 @@ endtry
 syntax enable
 
 " Line column style
-hi LineNr ctermfg=grey ctermbg=282a36 guifg=grey guibg=282a36
+hi LineNr ctermfg=grey ctermbg=none guifg=grey guibg=none
 
 " Padding left
 set foldcolumn=1
-hi foldcolumn guibg=282a36 ctermbg=282a36
+hi foldcolumn guibg=none ctermbg=none
 
 " Slit separator color
-hi vertsplit guifg=b282a36 guibg=282a36 ctermfg=grey ctermbg=282a36
-hi StatusLineNC guifg=282a36 guibg=282a36 ctermfg=282a36 ctermbg=white
+hi vertsplit guifg=grey guibg=none ctermfg=grey ctermbg=none
+hi StatusLineNC guifg=black guibg=grey ctermfg=black ctermbg=grey
 
 
 " ------------------------------------------------------------
-"  => Text and indent
+"  => Text and inden
 " ------------------------------------------------------------
 
 " Use spaces instead of tabs

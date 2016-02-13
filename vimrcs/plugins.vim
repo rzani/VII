@@ -2,15 +2,17 @@ set nocompatible
 filetype off
 
 set rtp+=~/.vii/bundle/Vundle.vim
+call vundle#rc("~/.vii/bundle")
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 Plugin 'tpope/vim-vinegar'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'craigemery/vim-autotag'
+
+" Put your plugins here
 
 call vundle#end()
 filetype plugin indent on
