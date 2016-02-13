@@ -12,7 +12,7 @@
 "    -> Color and fonts
 "    -> Text and indent
 "    -> Split Management
-"
+"    -> Auto Commands
 
 " ------------------------------------------------------------
 "  => General
@@ -47,17 +47,6 @@ nmap <Leader>ep :tabedit ~/.vii/vimrcs/plugins.vim<cr>
 " Make it easy to edit Hosts file
 nmap <Leader>eh :tabedit /etc/hosts<cr>
 
-" Make NERDTree easy to toggle
-nmap <Leader>t :NERDTreeToggle<cr>
-
-" Make CtrlP more easy
-nmap <C-p> :CtrlP<cr>
-
-" Go to in the file by tag - Ctags is required
-nmap <C-F> :CtrlPBufTag<cr>
-
-" More recently used files
-nmap <C-E> :CtrlPMRUFiles<cr>
 
 
 " ------------------------------------------------------------
@@ -132,9 +121,9 @@ set t_CO=256
 " Sets the background color
 set background=dark
 
-" Try to select colorscheme 
+" Try to select colorscheme
 try
-    colorscheme desert
+    colorscheme dracula
 catch
 endtry
 
@@ -142,15 +131,15 @@ endtry
 syntax enable
 
 " Line column style
-hi LineNr ctermfg=grey ctermbg=black guifg=grey guibg=black
+hi LineNr ctermfg=grey ctermbg=282a36 guifg=grey guibg=282a36
 
 " Padding left
-set foldcolumn=2
-hi foldcolumn guibg=background
+set foldcolumn=1
+hi foldcolumn guibg=282a36 ctermbg=282a36
 
 " Slit separator color
-hi vertsplit guifg=bg guibg=grey ctermfg=black ctermbg=grey
-hi StatusLineNC guifg=grey guibg=bg ctermfg=grey ctermbg=black
+hi vertsplit guifg=b282a36 guibg=282a36 ctermfg=grey ctermbg=282a36
+hi StatusLineNC guifg=282a36 guibg=282a36 ctermfg=282a36 ctermbg=white
 
 
 " ------------------------------------------------------------
@@ -181,11 +170,17 @@ set wrap
 "  => Split Management
 " ------------------------------------------------------------
 
-"Open file below when vsp
+" Open file below when vsp
 set splitbelow
 
-"Open file right when sp
+" Open file right when sp
 set splitright
+
+" Vertical split map
+nmap <Leader>v :vsp<cr>
+
+"Horizontal split map
+nmap <Leader>h :sp<cr>
 
 " Lazy way to move between windows
 map <C-j> <C-W>j
@@ -212,3 +207,15 @@ try
     set stal=2
 catch
 endtry
+
+
+" ------------------------------------------------------------
+"  => General
+" ------------------------------------------------------------
+
+" Automatically source the Vimrc file on save
+augroup autosourcing
+    autocmd!
+    autocmd BufWritePost .vimrc source %
+augroup END
+
