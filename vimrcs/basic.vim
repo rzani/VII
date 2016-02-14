@@ -123,8 +123,7 @@ set background=dark
 
 " Try to select colorscheme
 try
-    let g:sierra_Pitch = 1
-    colorscheme sierra
+    colorscheme dracula
 catch
 endtry
 
@@ -132,14 +131,14 @@ endtry
 syntax enable
 
 " Line column style
-hi LineNr ctermfg=grey ctermbg=none guifg=grey guibg=none
+hi LineNr ctermfg=grey ctermbg=bg guifg=grey guibg=bg
 
 " Padding left
 set foldcolumn=1
-hi foldcolumn guibg=none ctermbg=none
+hi foldcolumn guibg=bg ctermbg=bg
 
 " Slit separator color
-hi vertsplit guifg=grey guibg=none ctermfg=grey ctermbg=none
+hi vertsplit guifg=grey guibg=bg ctermfg=grey ctermbg=bg
 hi StatusLineNC guifg=black guibg=grey ctermfg=black ctermbg=grey
 
 
