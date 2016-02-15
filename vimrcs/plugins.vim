@@ -93,7 +93,7 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
 
 " ----------------> Snippets  <----------------------
-let g:UltiSnipsSnippetsDir = "~/.vii/snippets"
+let g:UltiSnipsSnippetsDir = "~/.vii/snippets/UltiSnips"
 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
