@@ -41,6 +41,9 @@ nmap <C-y> :redo<cr>
 " Make it easy to edit the Vimrc file
 nmap <Leader>ev :tabedit $MYVIMRC<cr>
 
+" Make it easy to edit the .vii/vimrcs/basic.vim
+nmap <Leader>eb :tabedit ~/.vii/vimrcs/basic.vim<cr>
+
 " Make it easy to edit plugins file
 nmap <Leader>ep :tabedit ~/.vii/vimrcs/plugins.vim<cr>
 
@@ -105,8 +108,8 @@ set incsearch
 set lazyredraw 
 
 " Make easy to search
-nmap <space> /
-nmap <C-space> ?
+" nmap <space> /
+" nmap <C-space> ?
 
 " Disabled highlight
 nmap <Leader><space> :nohlsearch<cr> 
@@ -123,7 +126,8 @@ set background=dark
 
 " Try to select colorscheme
 try
-    colorscheme dracula
+    let g:sierra_Twilight = 1
+    colorscheme sierra
 catch
 endtry
 
@@ -189,7 +193,7 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Close the current buffer
-map <Leader>bd :Bclose<cr>:tabclose<cr>gT
+map <Leader>bd :bd<cr>gT
 
 " Close all the buffers
 map <Leader>ba :bufdo bd<cr>
@@ -199,7 +203,6 @@ map <Leader>tn :tabnew<cr>
 map <Leader>to :tabonly<cr>
 map <Leader>tc :tabclose<cr>
 map <Leader>tm :tabmove 
-map <Leader>t<leader> :tabnext 
 
 " Specify the behavior when switching between buffers 
 try
@@ -210,12 +213,13 @@ endtry
 
 
 " ------------------------------------------------------------
-"  => General
+"  => Auto Commands
 " ------------------------------------------------------------
 
 " Automatically source the Vimrc file on save
 augroup autosourcing
     autocmd!
     autocmd BufWritePost .vimrc source %
+    autocmd BufWritePost basic.vim source ~/.vimrc
 augroup END
 

@@ -17,7 +17,8 @@ Plugin 'craigemery/vim-autotag'
 Plugin 'editorconfig/editorconfig-vim'
 
 " PHP Plugins
-Plugin 'StanAngeloff/php.vim.git'                   " 
+Plugin 'StanAngeloff/php.vim'
+Plugin 'scrooloose/syntastic'
 
 " Emmet
 Plugin 'mattn/emmet-vim'
@@ -25,6 +26,7 @@ Plugin 'mattn/emmet-vim'
 " Ultimate Snippets
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+
 
 
 
@@ -47,7 +49,7 @@ filetype plugin indent on
 " -------------------> CtrlP <------------------------
 
 " Make CtrlP more easy
-nmap <C-p> :CtrlP<cr>
+let g:ctrlp_map = '<c-p>'
 
 " Go to in the file by tag - Ctags is required
 nmap <C-F> :CtrlPBufTag<cr>
@@ -98,3 +100,16 @@ let g:UltiSnipsSnippetsDir = "~/.vii/snippets/UltiSnips"
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
+
+
+" ----------------> Syntastic  <----------------------
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_aggregate_errors = 1                    " display all errors from all checkers together
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
