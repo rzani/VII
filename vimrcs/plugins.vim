@@ -19,13 +19,31 @@ Plugin 'editorconfig/editorconfig-vim'
 " PHP Plugins
 Plugin 'StanAngeloff/php.vim'
 Plugin 'scrooloose/syntastic'
+Plugin 'Shougo/vimproc'
+Plugin 'Shougo/unite.vim'
+Plugin 'm2mdas/phpcomplete-extended'''
 
 " Emmet
 Plugin 'mattn/emmet-vim'
 
 " Ultimate Snippets
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+Plugin 'msanders/snipmate.vim'
+
+" Surrounding text
+Plugin 'tpope/vim-surround' 
+
+" Airline
+Plugin 'vim-airline/vim-airline'
+
+" Improve search
+Plugin 'rking/ag.vim'
+
+" Improve replace
+Plugin 'skwp/greplace.vim'
+
+" Multiple Line Cursos
+Plugin 'terryma/vim-multiple-cursors'
+
 
 
 
@@ -57,6 +75,9 @@ nmap <C-F> :CtrlPBufTag<cr>
 " More recently used files
 nmap <C-E> :CtrlPMRUFiles<cr>
 
+" Make ir easy to open buffers
+nmap <C-B> :CtrlPBuffer<cr>
+
 " Ignore files
 let g:ctrlp_custom_ignore = 'node_modules\DS_Store\|git'
 
@@ -68,6 +89,7 @@ nmap <Leader>t :NERDTreeToggle<cr>
 
 " Resolving conflict with vinegar
 let NERDTreeHijackNetrw = 0
+let NERDTreeShowBookmarks=1
 
 
 " ----------------> PHP Syntax <---------------------
@@ -83,6 +105,9 @@ augroup phpSyntaxOverride
 augroup END
 
 
+" ------------------> Emmet <------------------------
+let g:user_emmet_mode='i'
+
 " ----------------> PHP Complete <-------------------
 
 let g:phpcomplete_mappings = {
@@ -91,16 +116,8 @@ let g:phpcomplete_mappings = {
    \ 'jump_to_def_vsplit': '<C-\>',
 \}
 
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-
-
-" ----------------> Snippets  <----------------------
-let g:UltiSnipsSnippetsDir = "~/.vii/snippets/UltiSnips"
-
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
-
+inoremap <Leader><Leader> <C-x><C-o>
+autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
 
 " ----------------> Syntastic  <----------------------
 
@@ -113,3 +130,42 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+
+" ----------------------------------------------------
+"  => Snippets
+" ----------------------------------------------------
+
+nmap <Leader>es :e ~/.vii/snippets<cr>
+
+
+" ----------------------------------------------------
+"  => Airline
+" ----------------------------------------------------
+
+let g:airline#extensions#tabline#enabled = 1
+
+" the separator used on the left side >
+let g:airline_left_sep=''
+
+" the separator used on the right side >
+let g:airline_right_sep=''
+
+
+" ----------------------------------------------------
+"  => Grereplace.vim
+" ----------------------------------------------------
+
+set grepprg=ag
+let g:grep_cmd_opts = '--line-numbers --noheading'
+
+
+" ----------------------------------------------------
+"  => Multiple line cursor
+" ----------------------------------------------------
+
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_next_key='<C-d>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'

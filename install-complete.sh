@@ -18,11 +18,15 @@ source ~/.vii/vimrcs/basic.vim
 source ~/.vii/vimrcs/filetypes.vim
 source ~/.vii/vimrcs/plugins.vim
 
+source ~/.vii/vimrcs/mappings/laravel.vim
+
 try
     source ~/.vii/custom.vim
 catch
 endtry' > ~/.vimrc
 
 vim +PluginInstall +qall
+
+cd ~/.vii/bundle/vimproc && make && cd -
 
 echo "Everything looks fine, enjoy ;)"
