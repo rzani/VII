@@ -2,12 +2,18 @@ set nocompatible
 filetype off
 
 set rtp+=~/.vii/bundle/Vundle.vim
+
 call vundle#rc("~/.vii/bundle")
 call vundle#begin()
 
 " Vundle itself
 Plugin 'VundleVim/Vundle.vim'
 
+"Git plugin
+Plugin 'tpope/vim-fugitive'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-vinegar'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
@@ -17,11 +23,8 @@ Plugin 'craigemery/vim-autotag'
 Plugin 'editorconfig/editorconfig-vim'
 
 " PHP Plugins
-Plugin 'StanAngeloff/php.vim'
 Plugin 'scrooloose/syntastic'
-Plugin 'Shougo/vimproc'
-Plugin 'Shougo/unite.vim'
-Plugin 'm2mdas/phpcomplete-extended'''
+Plugin 'shawncplus/phpcomplete.vim'
 
 " Emmet
 Plugin 'mattn/emmet-vim'
@@ -44,6 +47,11 @@ Plugin 'skwp/greplace.vim'
 " Multiple Line Cursos
 Plugin 'terryma/vim-multiple-cursors'
 
+" Make it simplet to comment
+Plugin 'scrooloose/nerdcommenter'
+
+" Automatically close quotes
+Plugin 'Townk/vim-autoclose'
 
 
 
@@ -92,32 +100,16 @@ let NERDTreeHijackNetrw = 0
 let NERDTreeShowBookmarks=1
 
 
-" ----------------> PHP Syntax <---------------------
-
-function! PhpSyntaxOverride()
-    hi! def link phpDocTags  phpDefine
-    hi! def link phpDocParam phpType
-endfunction
-
-augroup phpSyntaxOverride
-    autocmd!
-    autocmd FileType php call PhpSyntaxOverride()
-augroup END
-
-
 " ------------------> Emmet <------------------------
 let g:user_emmet_mode='i'
 
+
 " ----------------> PHP Complete <-------------------
 
-let g:phpcomplete_mappings = {
-   \ 'jump_to_def': '<C-]>',
-   \ 'jump_to_def_split': '<C-[>',
-   \ 'jump_to_def_vsplit': '<C-\>',
-\}
+autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 
-inoremap <Leader><Leader> <C-x><C-o>
-autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
+set completeopt=longest,menuone
+
 
 " ----------------> Syntastic  <----------------------
 
@@ -143,13 +135,20 @@ nmap <Leader>es :e ~/.vii/snippets<cr>
 "  => Airline
 " ----------------------------------------------------
 
+" Automatically displays all buffers when there's only one tab open
 let g:airline#extensions#tabline#enabled = 1
 
 " the separator used on the left side >
-let g:airline_left_sep=''
+" let g:airline_left_sep=''
 
 " the separator used on the right side >
-let g:airline_right_sep=''
+" let g:airline_right_sep=''
+
+" Always show it
+set laststatus=2
+
+" Using powerline fonts
+let g:airline_powerline_fonts = 1
 
 
 " ----------------------------------------------------
@@ -169,3 +168,5 @@ let g:multi_cursor_next_key='<C-d>'
 let g:multi_cursor_prev_key='<C-p>'
 let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
+
+let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"

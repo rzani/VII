@@ -7,28 +7,28 @@
 "       -> Shortcuts
 
 " Automacally close braces
-inoremap {      {}<Left>
-inoremap {<CR>  {<CR>}<Esc>O
-inoremap {{     {
-inoremap {}     {}
+"inoremap {      {}<Left>
+"inoremap {<CR>  {<CR>}<Esc>O
+"inoremap {{     {
+"inoremap {}     {}
 
 " Automacally close apostrophes 
-inoremap '      ''<Left>
-inoremap '<CR>  '<CR>'<Esc>O
-inoremap ''     ''
+"inoremap '      ''<Left>
+"inoremap '<CR>  '<CR>'<Esc>O
+"inoremap ''     ''
 
 " Automacally close quotation mark 
-inoremap "      ""<Left>
-inoremap "<CR>  "<CR>"<Esc>O
-inoremap ""     ""
+"inoremap "      ""<Left>
+"inoremap "<CR>  "<CR>"<Esc>O
+"inoremap ""     ""
 
 " Automacally close parenthesis
-inoremap (      ()<Left>
-inoremap (<CR>  (<CR>)<Esc>O
-inoremap ((     (
-inoremap ()     ()
+"inoremap (      ()<Left>
+"inoremap (<CR>  (<CR>)<Esc>O
+"inoremap ((     (
+"inoremap ()     ()
 
-
+ 
 " ------------------------------------------------------------
 "  => Artisan General
 " ------------------------------------------------------------

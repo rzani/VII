@@ -18,12 +18,19 @@
 "  => General
 " ------------------------------------------------------------
 
+" No backup
+set nobackup
+set nowritebackup
+
 " Sets how many lines of history Vim has to remember
 set history=500
 
 " The default leader is '\', but comma is much better
 let mapleader=","
 let g:mapleader=","
+
+" Set clipboard default name
+set clipboard=unnamed
 
 " Make it easy save files
 nmap <Leader>w :w!<cr>
@@ -34,7 +41,7 @@ nmap <Leader>q :q<cr>
 " Make it easy redo changes
 nmap <C-y> :redo<cr>
 
-" :W sudo saves the file 
+" :W sudo saves the file
 " " (useful for handling the permission-denied error)
 " command W w !sudo tee % > /dev/null
 
@@ -50,6 +57,7 @@ nmap <Leader>ep :tabedit ~/.vii/vimrcs/plugins.vim<cr>
 " Make it easy to edit Hosts file
 nmap <Leader>eh :tabedit /etc/hosts<cr>
 
+set noerrorbells visualbell t_vb=
 
 
 " ------------------------------------------------------------
@@ -57,7 +65,7 @@ nmap <Leader>eh :tabedit /etc/hosts<cr>
 " ------------------------------------------------------------
 
 " Show line number, switch between 'number' and 'nonumber'
-set nonumber
+set number
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -86,7 +94,8 @@ set guioptions-=L
 set guioptions-=r
 set guioptions-=R
 
-
+" Set color column
+set colorcolumn=80
 
 " ------------------------------------------------------------
 "  => Search Settings
@@ -105,14 +114,14 @@ set hlsearch
 set incsearch
 
 " Don't redraw while executing macros (good performance config)
-set lazyredraw 
+set lazyredraw
 
 " Make easy to search
 " nmap <space> /
 " nmap <C-space> ?
 
 " Disabled highlight
-nmap <Leader><space> :nohlsearch<cr> 
+nmap <Leader><space> :nohlsearch<cr>
 
 
 " ------------------------------------------------------------
@@ -126,23 +135,31 @@ set background=dark
 
 " Try to select colorscheme
 try
-    let g:sierra_Twilight = 1
-    colorscheme sierra
+    colorscheme onedark
 catch
 endtry
+
+if has("gui_gtk2")
+    set guifont=Monaco\ 13
+endif
+
+if has('gui_running')
+    set guifont=Fira_Mono_for_Powerline:h13
+endif
+
 
 " Enable syntax highlight
 syntax enable
 
 " Line column style
-hi LineNr ctermfg=grey ctermbg=bg guifg=grey guibg=bg
+hi LineNr ctermfg=grey ctermbg=NONE guifg=grey guibg=NONE
 
 " Padding left
 set foldcolumn=1
-hi foldcolumn guibg=bg ctermbg=bg
+hi foldcolumn guibg=NONE ctermbg=NONE
 
 " Slit separator color
-hi vertsplit guifg=grey guibg=bg ctermfg=grey ctermbg=bg
+hi vertsplit guifg=grey guibg=NONE ctermfg=grey ctermbg=NONE
 hi StatusLineNC guifg=black guibg=grey ctermfg=black ctermbg=grey
 
 
@@ -161,7 +178,7 @@ set shiftwidth=4
 set tabstop=4
 
 " Auto indent
-set ai 
+set ai
 
 "Smart indent
 set si
@@ -169,6 +186,13 @@ set si
 "Wrap lines
 set wrap
 
+" Moving line up and down
+nnoremap <C-Up> :m .-2<CR>==
+nnoremap <C-Down> :m .+1<CR>==
+inoremap <C-Up> <Esc>:m .-2<CR>==gi
+inoremap <C-Down> <Esc>:m .+1<CR>==gi
+vnoremap <A-Up> :m '<-2<CR>gv=gv''
+vnoremap <C-Down> :m '>+1<CR>gv=gv
 
 " ------------------------------------------------------------
 "  => Split Management
@@ -202,9 +226,9 @@ map <Leader>ba :bufdo bd<cr>
 map <Leader>tn :tabnew<cr>
 map <Leader>to :tabonly<cr>
 map <Leader>tc :tabclose<cr>
-map <Leader>tm :tabmove 
+map <Leader>tm :tabmove
 
-" Specify the behavior when switching between buffers 
+" Specify the behavior when switching between buffers
 try
     set switchbuf=useopen,usetab,newtab
     set stal=2
@@ -222,4 +246,3 @@ augroup autosourcing
     autocmd BufWritePost .vimrc source %
     autocmd BufWritePost basic.vim source ~/.vimrc
 augroup END
-

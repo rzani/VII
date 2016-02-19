@@ -10,7 +10,7 @@
 
 cd ~/.vii
 
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vii/bundle/Vundle.vim
+git clone -q https://github.com/VundleVim/Vundle.vim.git ~/.vii/bundle/Vundle.vim
 
 echo 'set runtimepath+=~/.vii
 
@@ -27,6 +27,9 @@ endtry' > ~/.vimrc
 
 vim +PluginInstall +qall
 
-cd ~/.vii/bundle/vimproc && make && cd -
+git clone -q https://github.com/powerline/fonts ~/.vii/fonts
+
+sh ~/.vii/fonts/install.sh
+
 
 echo "Everything looks fine, enjoy ;)"
