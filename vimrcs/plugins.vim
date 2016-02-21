@@ -30,7 +30,7 @@ Plugin 'shawncplus/phpcomplete.vim'
 Plugin 'mattn/emmet-vim'
 
 " Ultimate Snippets
-Plugin 'msanders/snipmate.vim'
+Plugin 'ervandew/snipmate.vim'
 
 " Surrounding text
 Plugin 'tpope/vim-surround' 
@@ -52,6 +52,9 @@ Plugin 'scrooloose/nerdcommenter'
 
 " Automatically close quotes
 Plugin 'Townk/vim-autoclose'
+
+" Blade template
+Plugin 'jwalton512/vim-blade'
 
 
 
@@ -169,4 +172,5 @@ let g:multi_cursor_prev_key='<C-p>'
 let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
 
-let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+"let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"

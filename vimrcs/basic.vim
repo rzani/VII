@@ -58,7 +58,7 @@ nmap <Leader>ep :tabedit ~/.vii/vimrcs/plugins.vim<cr>
 nmap <Leader>eh :tabedit /etc/hosts<cr>
 
 set noerrorbells visualbell t_vb=
-
+set novisualbell
 
 " ------------------------------------------------------------
 "  => User Interface
@@ -133,33 +133,38 @@ set t_CO=256
 " Sets the background color
 set background=dark
 
-" Try to select colorscheme
 try
-    colorscheme onedark
+    colorscheme mod8
 catch
 endtry
 
-if has("gui_gtk2")
-    set guifont=Monaco\ 13
-endif
-
 if has('gui_running')
-    set guifont=Fira_Mono_for_Powerline:h13
+  set guioptions-=T  " no toolbar
+  set lines=60 columns=220 linespace=0
+  if has('gui_gtk2')
+    set guifont=Fira\ Mono\ for\ Powerline\ 11
+  else
+      set guifont=Fira_Mono_for_Powerline:h12
+  endif
 endif
+" if has('gui_running')
+"    set guifont=Fira_Mono_for_Powerline\ 11
+"endif
 
 
 " Enable syntax highlight
 syntax enable
 
 " Line column style
-hi LineNr ctermfg=grey ctermbg=NONE guifg=grey guibg=NONE
+" hi LineNr ctermfg=grey ctermbg=NONE guifg=grey guibg=NONE
 
 " Padding left
-set foldcolumn=1
-hi foldcolumn guibg=NONE ctermbg=NONE
+" set foldcolumn=1
+" hi foldcolumn guibg=NONE ctermbg=NONE
+
 
 " Slit separator color
-hi vertsplit guifg=grey guibg=NONE ctermfg=grey ctermbg=NONE
+"hi vertsplit guifg=grey guibg=NONE ctermfg=grey ctermbg=NONE
 hi StatusLineNC guifg=black guibg=grey ctermfg=black ctermbg=grey
 
 
@@ -246,3 +251,13 @@ augroup autosourcing
     autocmd BufWritePost .vimrc source %
     autocmd BufWritePost basic.vim source ~/.vimrc
 augroup END
+
+" Ctrl+s Save the file
+imap <C-S> <Esc>:w<cr>
+nmap <C-S> :w<cr>
+
+nmap <C-Tab> :bn<cr>
+imap <C-Tab> <Esc>:bn<cr>
+
+nmap <C-S-Tab> :bp<cr>
+imap <C-S-Tab> <Esc>:bp<cr>

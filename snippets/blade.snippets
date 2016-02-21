@@ -1,0 +1,52 @@
+
+# -----------------------------------------------------------------------------
+#  =>  BLADE
+# -----------------------------------------------------------------------------
+
+snippet if
+	@if (${1})
+		${2}
+	@endif
+
+snippet while
+	@while (${1:true})
+		${2}
+	@endwhile
+
+snippet for
+	@for ($${2:i} = 0; $$2 < ${1:count}; $$2${3:++}) {
+		${4: // code...}
+	}
+	@endfor
+
+snippet foreach
+	@foreach ($${1:vars} as $${2:key})
+		${3: //code...}
+	@endforeach
+
+snippet forelse
+	@forelse ($${1:user} as $${2:user})
+		${3}
+	@empty
+		${4}
+	@endforelse
+
+snippet y
+	@yield('${1}');
+
+snippet sec
+	@section ('${1:sidebar}')
+		${2:This is a section}
+	@${3:show|endsection}
+
+snippet ext
+	@extends('${1:layouts.master}')
+
+snippet inc
+	@include('${1:shared.errors}')
+
+snippet each
+	@each('${1:view.name}', $${2:jobs}, '${3:job}')
+
+snippet inject
+	@inject('${1:metrics}', '${2:App\Services\MetricsService}')
