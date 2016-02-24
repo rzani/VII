@@ -56,7 +56,7 @@ Plugin 'Townk/vim-autoclose'
 " Blade template
 Plugin 'jwalton512/vim-blade'
 
-
+Plugin 'jondkinney/dragvisuals.vim'
 
 
 " Put your plugins here
@@ -79,9 +79,6 @@ filetype plugin indent on
 
 " Make CtrlP more easy
 let g:ctrlp_map = '<c-p>'
-
-" Go to in the file by tag - Ctags is required
-nmap <C-F> :CtrlPBufTag<cr>
 
 " More recently used files
 nmap <C-E> :CtrlPMRUFiles<cr>
@@ -110,7 +107,7 @@ let g:user_emmet_mode='i'
 " ----------------> PHP Complete <-------------------
 
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 set completeopt=longest,menuone
 
 
@@ -122,7 +119,7 @@ set statusline+=%*
 
 let g:syntastic_aggregate_errors = 1                    " display all errors from all checkers together
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
@@ -172,5 +169,15 @@ let g:multi_cursor_prev_key='<C-p>'
 let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
 
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-"let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
+"let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
+
+" ----------------------------------------------------
+"  => Dragvisuals
+" ----------------------------------------------------
+
+vmap  <expr>  h        DVB_Drag('left')
+vmap  <expr>  l        DVB_Drag('right')
+vmap  <expr>  j        DVB_Drag('down')
+vmap  <expr>  k        DVB_Drag('up')
+let g:DVB_TrimWS = 1

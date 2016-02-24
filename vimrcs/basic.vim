@@ -57,8 +57,12 @@ nmap <Leader>ep :tabedit ~/.vii/vimrcs/plugins.vim<cr>
 " Make it easy to edit Hosts file
 nmap <Leader>eh :tabedit /etc/hosts<cr>
 
+" Stop annoying bells and blinks
 set noerrorbells visualbell t_vb=
 set novisualbell
+
+" Setting dictionary
+set dictionary=/usr/share/dict/words
 
 " ------------------------------------------------------------
 "  => User Interface
@@ -95,7 +99,12 @@ set guioptions-=r
 set guioptions-=R
 
 " Set color column
-set colorcolumn=80
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v', 100)
+
+" Make tabs, trailing whitespace and no-breaking spaces visible
+exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+set list
 
 " ------------------------------------------------------------
 "  => Search Settings
@@ -192,12 +201,12 @@ set si
 set wrap
 
 " Moving line up and down
-nnoremap <C-Up> :m .-2<CR>==
-nnoremap <C-Down> :m .+1<CR>==
-inoremap <C-Up> <Esc>:m .-2<CR>==gi
-inoremap <C-Down> <Esc>:m .+1<CR>==gi
-vnoremap <A-Up> :m '<-2<CR>gv=gv''
-vnoremap <C-Down> :m '>+1<CR>gv=gv
+"nnoremap <C-Up> :m .-2<CR>==
+"nnoremap <C-Down> :m .+1<CR>==
+"inoremap <C-Up> <Esc>:m .-2<CR>==gi
+"inoremap <C-Down> <Esc>:m .+1<CR>==gi
+"vnoremap <A-Up> :m '<-2<CR>gv=gv''
+"vnoremap <C-Down> :m '>+1<CR>gv=gv
 
 " ------------------------------------------------------------
 "  => Split Management
