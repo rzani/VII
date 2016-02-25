@@ -25,6 +25,8 @@ Plugin 'editorconfig/editorconfig-vim'
 " PHP Plugins
 Plugin 'scrooloose/syntastic'
 Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'StanAngeloff/php.vim'
+Plugin 'arnaud-lb/vim-php-namespace'
 
 " Emmet
 Plugin 'mattn/emmet-vim'
@@ -57,6 +59,13 @@ Plugin 'Townk/vim-autoclose'
 Plugin 'jwalton512/vim-blade'
 
 Plugin 'jondkinney/dragvisuals.vim'
+
+" Live color
+Plugin 'gorodinskiy/vim-coloresque'
+
+" SASS syntax
+Plugin 'cakebaker/scss-syntax.vim'
+
 
 
 " Put your plugins here
@@ -102,13 +111,6 @@ let NERDTreeShowBookmarks=1
 
 " ------------------> Emmet <------------------------
 let g:user_emmet_mode='i'
-
-
-" ----------------> PHP Complete <-------------------
-
-autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-set completeopt=longest,menuone
 
 
 " ----------------> Syntastic  <----------------------
@@ -181,3 +183,39 @@ vmap  <expr>  l        DVB_Drag('right')
 vmap  <expr>  j        DVB_Drag('down')
 vmap  <expr>  k        DVB_Drag('up')
 let g:DVB_TrimWS = 1
+
+
+" ----------------------------------------------------
+"  => Vim PHP Namespace
+" ----------------------------------------------------
+function! IPhpInsertUse()
+    call PhpInsertUse()
+    call feedkeys('a',  'n')
+endfunction
+autocmd FileType php inoremap <Leader>n <Esc>:call IPhpInsertUse()<CR>
+autocmd FileType php noremap <Leader>n :call PhpInsertUse()<CR>
+
+function! IPhpExpandClass()
+    call PhpExpandClass()
+    call feedkeys('a', 'n')
+endfunction
+autocmd FileType php inoremap <Leader>nf <Esc>:call IPhpExpandClass()<CR>
+autocmd FileType php noremap <Leader>nf :call PhpExpandClass()<CR>
+
+"Sort PHP use statements
+"http://stackoverflow.com/questions/11531073/how-do-you-sort-a-range-of-lines-by-length
+vmap <Leader>su ! awk '{ print length(), $0 \| "sort -n \| cut -d\\  -f2-" }'<cr>" Sort use statements
+
+function! PhpSyntaxOverride()
+  hi! def link phpDocTags  phpDefine
+  hi! def link phpDocParam phpType
+endfunction
+
+augroup phpSyntaxOverride
+  autocmd!
+  autocmd FileType php call PhpSyntaxOverride()
+augroup END
+
+" Make it easy add semicolon at end of line
+imap <Leader>; <Esc><S-a>;
+nmap <Leader>; <S-a>;<Esc>

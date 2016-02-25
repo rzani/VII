@@ -99,11 +99,11 @@ set guioptions-=r
 set guioptions-=R
 
 " Set color column
-highlight ColorColumn ctermbg=magenta
+highlight ColorColumn ctermbg=magenta guibg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
 
 " Make tabs, trailing whitespace and no-breaking spaces visible
-exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+exec "set listchars=tab:~~,trail:\uB7,nbsp:~"
 set list
 
 " ------------------------------------------------------------
