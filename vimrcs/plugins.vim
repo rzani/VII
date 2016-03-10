@@ -66,15 +66,6 @@ Plugin 'gorodinskiy/vim-coloresque'
 " SASS syntax
 Plugin 'cakebaker/scss-syntax.vim'
 
-
-
-" Put your plugins here
-
-
-
-
-
-
 call vundle#end()
 filetype plugin indent on
 
@@ -82,7 +73,6 @@ filetype plugin indent on
 " ----------------------------------------------------
 "  => Plugins settings
 " ----------------------------------------------------
-
 
 " -------------------> CtrlP <------------------------
 
@@ -139,6 +129,7 @@ nmap <Leader>es :e ~/.vii/snippets<cr>
 
 " Automatically displays all buffers when there's only one tab open
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 " the separator used on the left side >
 " let g:airline_left_sep=''
@@ -178,10 +169,10 @@ let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
 "  => Dragvisuals
 " ----------------------------------------------------
 
-vmap  <expr>  h        DVB_Drag('left')
-vmap  <expr>  l        DVB_Drag('right')
-vmap  <expr>  j        DVB_Drag('down')
-vmap  <expr>  k        DVB_Drag('up')
+vmap  <expr>  <C-h>        DVB_Drag('left')
+vmap  <expr>  <C-l>        DVB_Drag('right')
+vmap  <expr>  <C-j>        DVB_Drag('down')
+vmap  <expr>  <C-k>        DVB_Drag('up')
 let g:DVB_TrimWS = 1
 
 
@@ -219,3 +210,5 @@ augroup END
 " Make it easy add semicolon at end of line
 imap <Leader>; <Esc><S-a>;
 nmap <Leader>; <S-a>;<Esc>
+
+

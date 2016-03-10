@@ -10,9 +10,9 @@
 
 cd ~/.vii
 
-git clone -q https://github.com/powerline/fonts ~/.vii/fonts
+git clone https://github.com/powerline/fonts ~/.vii/fonts
 sh ~/.vii/fonts/install.sh
-git clone -q https://github.com/VundleVim/Vundle.vim.git ~/.vii/bundle/Vundle.vim
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vii/bundle/Vundle.vim
 
 echo 'set runtimepath+=~/.vii
 
@@ -28,5 +28,7 @@ catch
 endtry' > ~/.vimrc
 
 vim +PluginInstall +qall
+
+rm -Rf ~/.vii/bundle/snipmate.vim/snippets/*
 
 echo "Everything looks fine, enjoy ;)"

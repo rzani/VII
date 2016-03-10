@@ -69,6 +69,7 @@ set dictionary=/usr/share/dict/words
 " ------------------------------------------------------------
 
 " Show line number, switch between 'number' and 'nonumber'
+set relativenumber
 set number
 
 " Set to auto read when a file is changed from the outside
@@ -137,13 +138,12 @@ nmap <Leader><space> :nohlsearch<cr>
 "  => Color and fonts
 " ------------------------------------------------------------
 
-set t_CO=256
 
 " Sets the background color
 set background=dark
 
 try
-    colorscheme mod8
+    colorscheme base16-railscasts
 catch
 endtry
 
@@ -156,20 +156,10 @@ if has('gui_running')
       set guifont=Fira_Mono_for_Powerline:h12
   endif
 endif
-" if has('gui_running')
-"    set guifont=Fira_Mono_for_Powerline\ 11
-"endif
 
 
 " Enable syntax highlight
 syntax enable
-
-" Line column style
-" hi LineNr ctermfg=grey ctermbg=NONE guifg=grey guibg=NONE
-
-" Padding left
-" set foldcolumn=1
-" hi foldcolumn guibg=NONE ctermbg=NONE
 
 
 " Slit separator color
@@ -200,14 +190,6 @@ set si
 "Wrap lines
 set wrap
 
-" Moving line up and down
-"nnoremap <C-Up> :m .-2<CR>==
-"nnoremap <C-Down> :m .+1<CR>==
-"inoremap <C-Up> <Esc>:m .-2<CR>==gi
-"inoremap <C-Down> <Esc>:m .+1<CR>==gi
-"vnoremap <A-Up> :m '<-2<CR>gv=gv''
-"vnoremap <C-Down> :m '>+1<CR>gv=gv
-
 " ------------------------------------------------------------
 "  => Split Management
 " ------------------------------------------------------------
@@ -231,7 +213,7 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Close the current buffer
-map <Leader>bd :bd<cr>gT
+map <Leader>bd :NERDTreeClose<cr>:bd<cr>gT
 
 " Close all the buffers
 map <Leader>ba :bufdo bd<cr>
@@ -263,10 +245,17 @@ augroup END
 
 " Ctrl+s Save the file
 imap <C-S> <Esc>:w<cr>
+imap <Leader>s <Esc>:w<cr>
 nmap <C-S> :w<cr>
+nmap <Leader>s :w<cr>
 
-nmap <C-Tab> :bn<cr>
-imap <C-Tab> <Esc>:bn<cr>
+" Navigate between buffers
+nmap <Tab> :bn<cr>
+nmap <S-Tab> :bp<cr>
 
-nmap <C-S-Tab> :bp<cr>
-imap <C-S-Tab> <Esc>:bp<cr>
+if has('gui_gtk2')
+    vmap <C-c> "+yi
+    vmap <C-x> "+c
+    vmap <C-v> c<ESC>"+p
+    imap <C-v> <C-r><C-o>+
+endif
